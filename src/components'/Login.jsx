@@ -1,6 +1,9 @@
 import { useRef, useState } from "react";
 import Header from "./Header";
 import { checkValidData } from "../utils/validate";
+import { auth } from "../utils/firebase";
+import { createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
+
 
 const Login=()=>{
     let [isSignIn,setIsSignIn]=useState(true);
@@ -15,13 +18,44 @@ const Login=()=>{
     }
 
     const handleButtonClick=()=>{
-        // console.log(email.current.value+"  "+password.current.value+" "+name.current.value)
-        let Email=email.current.value;
-        let Password=password.current.value;
-        let Name=(isSignIn?"name":name.current.value)
-        console.log(Email,Name,Password);
+        let message=checkValidData((email.current.value),(password.current.value),(isSignIn?"name":name.current.value))
+        setErrMessage(message)
         
-        setErrMessage(checkValidData(Email,Password,Name))
+        if(message){console.log("no run "); return }
+
+        //sign In/sign up
+        if(!isSignIn){
+            //sign up
+             createUserWithEmailAndPassword(auth,(email.current.value) , (password.current.value))
+               .then((userCredential) => {
+                 // Signed up 
+                 const user = userCredential.user;
+                 console.log("account created",user)
+                 // ...
+               })
+               .catch((error) => {
+                 const errorCode = error.code;
+                 const errorMessage = error.message;
+                 console.log(errorCode+"---"+errorMessage);
+                 // ..
+               });
+        }else{
+            //Sign In
+              signInWithEmailAndPassword(auth,(email.current.value) , (password.current.value))
+                .then((userCredential) => {
+                  // Signed in 
+                  const user = userCredential.user;
+                  console.log("user Logged  in",user);
+                  // ...
+                })
+                .catch((error) => {
+                  const errorCode = error.code;
+                  const errorMessage = error.message;
+                  console.log(errorCode+"---"+errorMessage);
+                  setErrMessage("User Not Found")
+                });            
+        }
+
     }
 
     return (
@@ -53,9 +87,9 @@ const Login=()=>{
                   className="bg-[#171716] w-full p-4 my-2  rounded-lg"
                   type="password" placeholder="Enter Password" /> 
                   
-                  <button onClick={()=>handleButtonClick()} className="bg-[#e50914] w-full py-3 px-2 my-4 rounded-lg">{isSignIn?"Sign In":"Sign Up"}</button>
+                  <button onClick={()=>{handleButtonClick()}} className="bg-[#e50914] w-full py-3 px-2 my-4 rounded-lg">{isSignIn?"Sign In":"Sign Up"}</button>
                   
-                {errMessage && <p className="text-red-500">{errMessage}</p>}
+                {errMessage && <p className="text-red-500 font-medium">{errMessage}</p>}
 
                   <p className="text-lg mt-2 cursor-pointer" onClick={()=>toggleSignInForm()}>
                     {isSignIn?"New to Netflix? Sign Up Now":"Already Registered? Sign In"}

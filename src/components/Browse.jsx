@@ -1,9 +1,16 @@
+import useNowPlayingMovies from "../hooks/useMovieTrailer";
 import Header from "./Header";
+import MainContainer from "./MainContainer";
+import SecondaryContainer from "./SecondaryContainer";
 
 const Browse = () => {
+  useNowPlayingMovies();
+
   return (
-    <div>
+    <div className="w-screen">
       <Header />
+      <MainContainer />
+      <SecondaryContainer />
     </div>
   );
 };

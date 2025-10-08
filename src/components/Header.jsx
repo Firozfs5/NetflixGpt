@@ -44,9 +44,8 @@ const Header = () => {
   }, []);
 
   let user = useSelector((store) => store?.user);
-  // console.log(user.photoURL)
   return (
-    <div className="absolute flex justify-between w-full px-8 py-2 bg-gradient-to-b from-black z-10">
+    <div className="absolute flex justify-between w-screen px-8 py-2 bg-gradient-to-b from-black z-10">
       <img className="w-44" src={LOGO} alt="Netflix_Logo" />
 
       {user && (

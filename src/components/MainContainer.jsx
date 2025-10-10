@@ -1,16 +1,22 @@
 import { useSelector } from "react-redux";
 import VideoBackground from "./VideoBackground";
 import VideoTitle from "./VideoTitle";
+import { useState } from "react";
 
 const MainContainer = () => {
   let movies = useSelector((store) => store.movies?.nowPlayingMovies);
-  // if (!movies) return;
+  let [trailerAudio, setTrailerAudio] = useState(false);
   const mainMovie = movies[0];
   let { title, overview, id } = mainMovie;
   return (
     <div className="w-full">
-      <VideoTitle title={title} overview={overview} />
-      <VideoBackground movieId={id} />
+      <VideoTitle
+        title={title}
+        overview={overview}
+        trailerAudio={trailerAudio}
+        setTrailerAudio={setTrailerAudio}
+      />
+      <VideoBackground movieId={id} trailerAudio={trailerAudio} />
     </div>
   );
 };

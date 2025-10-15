@@ -1,51 +1,38 @@
 import MovieCard from "./MovieCard";
-
-// const MovieList = ({ title, movies }) => {
-//   console.log(title, movies);
-
-//   return (
-//     <div className="px-6 ">
-//       <h1 className="max-w-lg text-3xl font-semibold leading-loose text-white">
-//         {title}
-//       </h1>
-//       <div className="flex  overflow-x-scroll scrollbar-hide">
-//         <div className="flex">
-//           {movies.map((movie) => (
-//             <MovieCard key={movie?.id} poster_path={movie?.poster_path} />
-//           ))}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-// export default MovieList;
-
-// import MovieCard from "./MovieCard";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useState } from "react";
 
 const MovieList = ({ title, movies }) => {
-  function NextArrow(props) {
-    const { onClick } = props;
-    return (
-      <div
-        onClick={onClick}
-        className="absolute right-0 top-1/3 text-white text-3xl cursor-pointer bg-black bg-opacity-50 px-2 py-6 rounded-l-lg hover:bg-opacity-80 z-10"
-      >
-        ❯
-      </div>
-    );
-  }
+  const [arrowVisibility, setArrowVisibility] = useState(false);
 
+  // ✅ Corrected Left Arrow
   function PrevArrow(props) {
     const { onClick } = props;
     return (
       <div
         onClick={onClick}
-        className="absolute left-0 top-1/3 text-white text-3xl cursor-pointer bg-black bg-opacity-50 px-2 py-6 rounded-r-lg hover:bg-opacity-80 z-10"
+        className={`${
+          arrowVisibility ? "opacity-100" : "opacity-0"
+        } absolute left-0 top-1/3 text-white text-3xl cursor-pointer bg-black bg-opacity-50 px-2 py-6 rounded-r-lg hover:bg-opacity-80 z-10 transition-opacity duration-300`}
       >
         ❮
+      </div>
+    );
+  }
+
+  // ✅ Corrected Right Arrow
+  function NextArrow(props) {
+    const { onClick } = props;
+    return (
+      <div
+        onClick={onClick}
+        className={`${
+          arrowVisibility ? "opacity-100" : "opacity-0"
+        } absolute right-0 top-1/3 text-white text-3xl cursor-pointer bg-black bg-opacity-50 px-2 py-6 rounded-l-lg hover:bg-opacity-80 z-10 transition-opacity duration-300`}
+      >
+        ❯
       </div>
     );
   }
@@ -54,26 +41,30 @@ const MovieList = ({ title, movies }) => {
     dots: false,
     infinite: true,
     speed: 600,
-    slidesToShow: 7, // number of visible movie cards
+    slidesToShow: 6,
     slidesToScroll: 4,
     arrows: true,
-    autoplay: false, // set true if you want auto-slide
+    autoplay: false,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
     responsive: [
       {
-        breakpoint: 1024, // tablet
+        breakpoint: 1024,
         settings: { slidesToShow: 4, slidesToScroll: 2 },
       },
       {
-        breakpoint: 768, // mobile
+        breakpoint: 768,
         settings: { slidesToShow: 2, slidesToScroll: 1 },
       },
     ],
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
   };
 
   return (
-    <div className="px-6 mb pb-6">
+    <div
+      className="px-6 pb-6 relative"
+      onMouseEnter={() => setArrowVisibility(true)}
+      onMouseLeave={() => setArrowVisibility(false)}
+    >
       <h1 className="text-2xl font-semibold text-white mb-4">{title}</h1>
 
       <Slider {...settings}>

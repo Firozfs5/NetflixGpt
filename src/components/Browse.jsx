@@ -6,6 +6,7 @@ import SecondaryContainer from "./SecondaryContainer";
 import usePopularMovies from "../hooks/usePopularMovies";
 import useTopRatedMovies from "../hooks/useTopRatedMovies";
 import useUpcomingMovies from "../hooks/useUpcomingMovies";
+import GptSearch from "./GptSearch";
 
 const Browse = () => {
   useNowPlayingMovies();
@@ -14,13 +15,22 @@ const Browse = () => {
   useUpcomingMovies();
   let { nowPlayingMovies, popularMovies, topRatedMovies, upcomingMovies } =
     useSelector((store) => store?.movies);
+  let { gptSearchView } = useSelector((store) => store.gpt);
+
   if (!nowPlayingMovies || !popularMovies || !topRatedMovies || !upcomingMovies)
     return;
+
   return (
     <div className="w-screen scrollbar-hide">
       <Header />
-      <MainContainer />
-      <SecondaryContainer />
+      {gptSearchView ? (
+        <GptSearch />
+      ) : (
+        <>
+          <MainContainer />
+          <SecondaryContainer />
+        </>
+      )}
     </div>
   );
 };

@@ -6,6 +6,8 @@ import { useState } from "react";
 const MainContainer = () => {
   let movies = useSelector((store) => store.movies?.nowPlayingMovies);
   let [trailerAudio, setTrailerAudio] = useState(false);
+  if (!movies || movies.length === 0) return null;
+
   const mainMovie = movies[0];
   let { title, overview, id } = mainMovie;
   return (

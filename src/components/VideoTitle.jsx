@@ -1,7 +1,7 @@
 import { RxSpeakerModerate, RxSpeakerOff } from "react-icons/rx";
 const VideoTitle = ({ overview, title, trailerAudio, setTrailerAudio }) => {
   return (
-    <div className="w-screen h-[96vh] flex flex-col pt-[17%] z-10 px-24 absolute text-white bg-gradient-to-r from-black">
+    <div className="w-screen h-[96vh] flex flex-col pt-[17%] z-10 px-24 absolute text-white bg-gradient-to-r from-black/0">
       <h1 className="text-5xl font-bold">{title}</h1>
       <p className="text-lg w-2/6 py-5">{overview.slice(0, 200) + "..."}</p>
       <div>
@@ -14,7 +14,9 @@ const VideoTitle = ({ overview, title, trailerAudio, setTrailerAudio }) => {
       </div>
       <button
         onClick={() => setTrailerAudio(!trailerAudio)}
-        className="self-end mt-12 ml-22 text-4xl outline-0 "
+        className="absolute right-14 bottom-25 text-4xl p-3 bg-black/40 rounded-full hover:bg-black/60 scale-90 hover:scale-110 transition-transform duration-300"
+
+        // className="self-end mt-12 ml-22 text-4xl outline-0 "
       >
         {!trailerAudio ? <RxSpeakerOff /> : <RxSpeakerModerate />}
       </button>

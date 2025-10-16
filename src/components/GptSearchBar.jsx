@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import lang from "../utils/languageConstants";
 import { useRef } from "react";
+import openai from "../utils/openai";
 
 const GptSearchBar = () => {
   let languageChoose = useSelector((store) => store.config.lang);
@@ -8,6 +9,16 @@ const GptSearchBar = () => {
 
   let handleGptSearchClick = async () => {
     console.log(searchText.current.value);
+    let gptQuery =
+      "Act as a Movie Recommendation System and suggest some movies for query" +
+      searchText.current.value +
+      ". only give me the name of five movies , comma separated like the example result given ahead.Example results: Gadar, sholay, Don, Golmaaal, Koi Mil Gaya";
+    //make apui call to chat gptr to use and get the data from it
+    let gptResults = await openai.chat.completions.create({
+      messages: [{ role: "user", content: gptQuery }],
+      model: "gpt-4o-mini",
+    });
+    console.log(gptResults.choices);
   };
 
   return (

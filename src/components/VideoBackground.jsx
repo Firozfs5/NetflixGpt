@@ -3,7 +3,7 @@ import useMovieTrailer from "../hooks/useTrailerVideo";
 const VideoBackground = ({ movieId, trailerAudio }) => {
   let trailerId = useMovieTrailer(movieId);
   return (
-    <div className="relative w-screen h-screen overflow-hidden ">
+    <div className="relative w-screen h-screen  overflow-hidden ">
       {/* <div className=""> */}
       <iframe
         className="absolute -mt-8 top-1/2 left-1/2 w-[120vw] h-[129vh] -translate-x-1/2 -translate-y-1/2"

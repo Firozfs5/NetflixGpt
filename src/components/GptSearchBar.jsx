@@ -1,50 +1,52 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import lang from "../utils/languageConstants";
 import { useRef } from "react";
-import ai from "../utils/genAi";
-import { API_OPTIONS } from "../utils/constants";
-import { addGptMovieResult } from "../utils/gptSlice";
+import useGptCallMovies from "../hooks/useGptSearchBar";
 
 const GptSearchBar = () => {
   let languageChoose = useSelector((store) => store.config.lang);
   let searchText = useRef(null);
-  let dispatch = useDispatch();
 
   //search movies came from gemini to tmdb
-  const searchMovieTMDB = async (movie) => {
-    let data = await fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=false&language=en-US&page=1`,
-      API_OPTIONS
-    );
-    let json = await data.json();
-    return json.results;
-  };
+  // const searchMovieTMDB = async (movie) => {
+  //   let data = await fetch(
+  //     `https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=false&language=en-US&page=1`,
+  //     API_OPTIONS
+  //   );
+  //   let json = await data.json();
+  //   return json.results;
+  // };
 
-  let handleGptSearchClick = async () => {
-    // console.log(searchText.current.value);
+  // let handleGptSearchClick = async () => {
+  //   // console.log(searchText.current.value);
 
-    let gptQuery =
-      "Act as a Movie Recommendation System and suggest some movies for query" +
-      searchText.current.value +
-      ". only give me the name of five movies or i have gave a movie name then also add that movie name also in it, comma separated like the example result given ahead.Example results: Gadar, sholay, Don, Golmaaal, Koi Mil Gaya";
+  //   let gptQuery =
+  //     "Act as a Movie Recommendation System and suggest some movies for query" +
+  //     searchText.current.value +
+  //     ". only give me the name of 8 movies or i have gave a movie name then also add that movie name also in it, comma separated like the example result given ahead.Example results: Gadar, sholay, Don, Golmaaal, Koi Mil Gaya";
 
-    //calling gemini
-    const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
-      contents: gptQuery,
-    });
+  //   //calling gemini
+  //   const response = await ai.models.generateContent({
+  //     model: "gemini-2.5-flash",
+  //     contents: gptQuery,
+  //   });
 
-    const gptMovies = response?.text.split(", ");
+  //   const gptMovies = response?.text.split(", ");
 
-    //here we get primse of movies
-    let promisedArray = gptMovies.map((movie) => searchMovieTMDB(movie));
-    let tmdbResults = await Promise.all(promisedArray);
-    // console.log(tmdbResults);
+  //   //here we get primse of movies
+  //   let promisedArray = gptMovies.map((movie) => searchMovieTMDB(movie));
+  //   let tmdbResults = await Promise.all(promisedArray);
+  //   // console.log(tmdbResults);
 
-    //sending movie to store
-    dispatch(
-      addGptMovieResult({ movieNames: gptMovies, movieResults: tmdbResults })
-    );
+  //   //sending movie to store
+  //   dispatch(
+  //     addGptMovieResult({ movieNames: gptMovies, movieResults: tmdbResults })
+  //   );
+  // };
+  let generateSearchResults = useGptCallMovies();
+
+  let handleGptSearchClick = function () {
+    generateSearchResults(searchText);
   };
 
   return (
@@ -81,13 +83,13 @@ const GptSearchBar = () => {
             ref={searchText}
             type="search"
             id="default-search"
-            className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block w-full p-4 ps-10 text-medium text-white  rounded-lg bg-black  "
             placeholder={lang[languageChoose].gptSearchPlaceholder}
             required
           />
           <button
             type="submit"
-            className="text-white absolute end-2.5 bottom-2.5 bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+            className="text-white absolute end-2.5 bottom-2.5 bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-md px-4 py-2 "
             onClick={handleGptSearchClick}
           >
             {lang[languageChoose].search}

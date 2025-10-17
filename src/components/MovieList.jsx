@@ -3,10 +3,12 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const MovieList = ({ title, movies }) => {
   const [arrowVisibility, setArrowVisibility] = useState(false);
-
+  let { gptSearchView } = useSelector((store) => store.gpt);
+  console.log(gptSearchView);
   // ✅ Corrected Left Arrow
   function PrevArrow(props) {
     const { onClick } = props;
@@ -61,11 +63,21 @@ const MovieList = ({ title, movies }) => {
 
   return (
     <div
-      className="px-6 pb-6 relative"
+      className={
+        gptSearchView ? "bg-black/80 mt-8 p-4 relative" : "px-6 pb-6 relative "
+      }
       onMouseEnter={() => setArrowVisibility(true)}
       onMouseLeave={() => setArrowVisibility(false)}
     >
-      <h1 className="text-2xl font-semibold text-white mb-4">{title}</h1>
+      <h1
+        className={
+          gptSearchView
+            ? "text-3xl font-bold text-white mb-1 ml-4"
+            : "text-2xl font-semibold text-white mb-4"
+        }
+      >
+        {title}
+      </h1>
 
       <Slider {...settings}>
         {movies?.map((movie) =>

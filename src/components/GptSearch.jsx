@@ -1,12 +1,11 @@
 import GptMovieSuggestion from "./GptMovieSuggestion";
 import GptSearchBar from "./GptSearchBar";
-import { BG_URL } from "../utils/constants";
 const GptSearch = () => {
   return (
     <div>
-      <div className="absolute h-full w-full">
+      <div className="fixed h-full w-full">
         <img
-          src={BG_URL}
+          src="/searchBarImg.jpg"
           alt="background_img"
           className="w-full h-full object-cover"
         />

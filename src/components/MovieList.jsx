@@ -68,11 +68,13 @@ const MovieList = ({ title, movies }) => {
       <h1 className="text-2xl font-semibold text-white mb-4">{title}</h1>
 
       <Slider {...settings}>
-        {movies?.map((movie) => (
-          <div key={movie?.id} className="px-2">
-            <MovieCard poster_path={movie?.poster_path} />
-          </div>
-        ))}
+        {movies?.map((movie) =>
+          !movie.poster_path ? null : (
+            <div key={movie?.id} className="px-2">
+              <MovieCard poster_path={movie?.poster_path} />
+            </div>
+          )
+        )}
       </Slider>
     </div>
   );

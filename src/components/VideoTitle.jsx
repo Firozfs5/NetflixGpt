@@ -1,7 +1,8 @@
 import { RxSpeakerModerate, RxSpeakerOff } from "react-icons/rx";
+
 const VideoTitle = ({ overview, title, trailerAudio, setTrailerAudio }) => {
   return (
-    <div className="w-screen h-[96vh] flex flex-col pt-[17%] z-10 px-24 absolute text-white bg-gradient-to-r from-black/0">
+    <div className="w-screen h-[94vh] flex flex-col pt-[17%] z-10 px-24 absolute text-white bg-gradient-to-r from-black/40 to-transparent">
       <h1 className="text-5xl font-bold">{title}</h1>
       <p className="hidden md:block text-lg w-2/6 py-5">
         {overview.slice(0, 200) + "..."}

@@ -10,6 +10,7 @@ import UserProfile from "./UserProfile";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../utils/firebase";
 import { IoSearch } from "react-icons/io5";
+import TudumIntro from "./TudumIntro";
 
 const Header = () => {
   let dispatch = useDispatch();
@@ -33,6 +34,7 @@ const Header = () => {
       } else {
         dispatch(removeUser());
         navigate("/");
+        dispatch({ type: "RESET_STORE" });
       }
     });
     // adding eader bg black feature
@@ -53,11 +55,15 @@ const Header = () => {
     dispatch(changeLanguage(e.target.value));
   }
 
-  return (
+  let [showTudum, setShowTudum] = useState(true);
+
+  return showTudum ? (
+    <TudumIntro onFinish={() => setShowTudum(false)} />
+  ) : (
     <div
       className={` fixed flex  ${
-        scroll || gptSearchView ? "bg-black/70 " : "bg-transparent"
-      } w-screen px-8 transition-colors duration-300  ease-in-out bg-gradient-to-b from-black z-30 `}
+        scroll || gptSearchView ? "bg-[#18181b] " : "bg-transparent"
+      } w-screen px-8 transition-colors duration-300  ease-in-out bg-gradient-to-b from-[bg-[#18181b]] z-30 `}
     >
       <img className="w-44" src={LOGO} alt="Netflix_Logo" />
 
@@ -82,30 +88,31 @@ const Header = () => {
           </div>
 
           <div className="flex justify-center items-center mx-7">
-            {gptSearchView && (
-              <select
-                name=""
-                className="border rounded px-2 py-1 bg-gray-800 text-white mr-3 outline-none"
-                onChange={handleLanguageChange}
-              >
-                {SUPPORTED_LANGUAGES.map((lang) => (
-                  <option
-                    key={lang.identifier}
-                    value={lang.identifier}
-                    className="text-center"
-                  >
-                    {lang.name}
-                  </option>
-                ))}
-              </select>
-            )}
-            {/* op */}
             <div
               className="mx-5 items-center justify-center "
               onClick={handleGptSearchClick}
             >
               <IoSearch className="text-white transfrom scale-140 hover:scale-165 transition-all duration-200" />
             </div>
+
+            {gptSearchView && (
+              <select
+                name=""
+                className="bg-black text-white text-sm md:text-base border border-gray-700 rounded-md px-4 py-2 outline-none focus:border-red-600 cursor-pointer appearance-none
+         hover:border-gray-500 transition-colors duration-200"
+                onChange={handleLanguageChange}
+              >
+                {SUPPORTED_LANGUAGES.map((lang) => (
+                  <option
+                    key={lang.identifier}
+                    value={lang.identifier}
+                    className="bg-black text-white"
+                  >
+                    {lang.name}
+                  </option>
+                ))}
+              </select>
+            )}
 
             <UserProfile />
           </div>

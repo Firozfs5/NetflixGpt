@@ -4,7 +4,7 @@ import MovieList from "./MovieList";
 const SecondaryContainer = () => {
   const movies = useSelector((store) => store?.movies);
   return (
-    <div className="bg-[black] ">
+    <div className="bg-[#18181b] ">
       <div className="-mt-24 pl-3 relative z-20 ">
         <MovieList title={"Now Playing"} movies={movies?.nowPlayingMovies} />
         <MovieList title={"Top Rated"} movies={movies?.topRatedMovies} />

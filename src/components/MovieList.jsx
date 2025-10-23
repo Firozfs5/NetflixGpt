@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 const MovieList = ({ title, movies }) => {
   const [arrowVisibility, setArrowVisibility] = useState(false);
   let { gptSearchView } = useSelector((store) => store.gpt);
-  console.log(gptSearchView);
+  // console.log(title, movies);
   // ✅ Corrected Left Arrow
   function PrevArrow(props) {
     const { onClick } = props;

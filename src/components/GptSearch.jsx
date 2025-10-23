@@ -2,18 +2,11 @@ import GptMovieSuggestion from "./GptMovieSuggestion";
 import GptSearchBar from "./GptSearchBar";
 const GptSearch = () => {
   return (
-    <div>
-      <div className="fixed h-full w-full">
-        <img
-          src="/searchBarImg.jpg"
-          alt="background_img"
-          className="w-full h-full object-cover"
-        />
-      </div>
+    <div className="fixed h-full w-full bg-[#18181b] overflow-y-scroll">
       <GptSearchBar />
+
       <GptMovieSuggestion />
     </div>
   );
 };
-
 export default GptSearch;

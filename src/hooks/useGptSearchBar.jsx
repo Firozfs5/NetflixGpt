@@ -18,17 +18,19 @@ function useGptCallMovies() {
 
   let handleGptSearchClick = async (searchText) => {
     //query
-    let gptQuery =
-      "Act as a Movie Recommendation System and suggest some movies for query" +
-      searchText.current.value +
-      ". only give me the name of 8 movies or i have gave a movie name then also add that movie name also in it, comma separated like the example result given ahead.Example results: Gadar, sholay, Don, Golmaaal, Koi Mil Gaya";
-
+    let gptQuery = `
+You are a Movie Recommendation AI.
+Suggest 8 movies related to "${searchText.current.value}".
+Make sure the searched movie (if it's real) is also included.
+Output must be only movie titles, separated by commas — no extra words or numbering.
+Example: Inception, Interstellar, Tenet, The Dark Knight, Memento, Dunkirk, Prestige, Oppenheimer
+`;
     //calling gemini
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",
       contents: gptQuery,
     });
-
+    console.log(response);
     //splitting output
     const gptMovies = response?.text.split(", ");
 

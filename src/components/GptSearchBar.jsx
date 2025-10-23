@@ -7,42 +7,6 @@ const GptSearchBar = () => {
   let languageChoose = useSelector((store) => store.config.lang);
   let searchText = useRef(null);
 
-  //search movies came from gemini to tmdb
-  // const searchMovieTMDB = async (movie) => {
-  //   let data = await fetch(
-  //     `https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=false&language=en-US&page=1`,
-  //     API_OPTIONS
-  //   );
-  //   let json = await data.json();
-  //   return json.results;
-  // };
-
-  // let handleGptSearchClick = async () => {
-  //   // console.log(searchText.current.value);
-
-  //   let gptQuery =
-  //     "Act as a Movie Recommendation System and suggest some movies for query" +
-  //     searchText.current.value +
-  //     ". only give me the name of 8 movies or i have gave a movie name then also add that movie name also in it, comma separated like the example result given ahead.Example results: Gadar, sholay, Don, Golmaaal, Koi Mil Gaya";
-
-  //   //calling gemini
-  //   const response = await ai.models.generateContent({
-  //     model: "gemini-2.5-flash",
-  //     contents: gptQuery,
-  //   });
-
-  //   const gptMovies = response?.text.split(", ");
-
-  //   //here we get primse of movies
-  //   let promisedArray = gptMovies.map((movie) => searchMovieTMDB(movie));
-  //   let tmdbResults = await Promise.all(promisedArray);
-  //   // console.log(tmdbResults);
-
-  //   //sending movie to store
-  //   dispatch(
-  //     addGptMovieResult({ movieNames: gptMovies, movieResults: tmdbResults })
-  //   );
-  // };
   let generateSearchResults = useGptCallMovies();
 
   let handleGptSearchClick = function () {
@@ -50,9 +14,9 @@ const GptSearchBar = () => {
   };
 
   return (
-    <div className="w-full pt-20  flex justify-center items-center">
+    <div className="w-full pt-20 mt-6  flex justify-center items-center">
       <form
-        className="max-w-[1/2] mx-auto w-[40%]"
+        className="max-w-[1/2] mx-auto w-[50%]"
         onSubmit={(e) => e.preventDefault()}
       >
         <label

@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addPopularMovies } from "../utils/movieSlice";
 import { useEffect } from "react";
 import { API_OPTIONS } from "../utils/constants";
+import { addGptMovieResult } from "../utils/gptSlice";
 
 const usePopularMovies = () => {
   let dispatch = useDispatch();
@@ -12,7 +13,12 @@ const usePopularMovies = () => {
       API_OPTIONS
     );
     const json = await data.json();
-    // console.log(json);
+    dispatch(
+      addGptMovieResult({
+        movieNames: ["Popular Movies"],
+        movieResults: [json.results],
+      })
+    );
     dispatch(addPopularMovies(json.results));
   };
 

@@ -7,6 +7,7 @@ import usePopularMovies from "../hooks/usePopularMovies";
 import useTopRatedMovies from "../hooks/useTopRatedMovies";
 import useUpcomingMovies from "../hooks/useUpcomingMovies";
 import GptSearch from "./GptSearch";
+import TudumIntro from "./TudumIntro";
 
 const Browse = () => {
   useNowPlayingMovies();
@@ -21,7 +22,7 @@ const Browse = () => {
     return;
 
   return (
-    <div className="w-screen scrollbar-hide">
+    <div className="w-screen  ">
       <Header />
       {gptSearchView ? (
         <GptSearch />

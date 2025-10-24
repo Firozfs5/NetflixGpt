@@ -8,7 +8,7 @@ const MainContainer = () => {
   let [trailerAudio, setTrailerAudio] = useState(false);
   if (!movies || movies.length === 0) return null;
 
-  const mainMovie = movies[0];
+  const mainMovie = movies[10];
   let { title, overview, id } = mainMovie;
   return (
     <div className="w-full ">

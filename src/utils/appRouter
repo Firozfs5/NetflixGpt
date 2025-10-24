@@ -1,0 +1,21 @@
+import { createBrowserRouter } from "react-router-dom";
+import Login from "../components/Login";
+import Browse from "../components/Browse";
+import MovieView from "../components/MovieView";
+
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <Login />,
+  },
+  {
+    path: "/browse",
+    element: <Browse />,
+  },
+  {
+    path: "/movie/:movieId",
+    element: <MovieView />,
+  },
+]);
+
+export default appRouter;

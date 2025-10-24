@@ -12,7 +12,7 @@ const useMovieTrailer = (movieId) => {
       `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
       API_OPTIONS
     );
-    console.log(data);
+
     let json = await data.json();
     let filterData = json.results.filter((movie) => movie.type == "Trailer");
 

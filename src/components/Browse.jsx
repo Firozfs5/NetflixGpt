@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import Header from "./Header";
+import SecondaryContainer from "./SecondaryContainer";
 import MainContainer from "./MainContainer";
 
 const Browse = () => {

@@ -62,7 +62,7 @@ const MovieList = ({ title, movies }) => {
 
   return (
     <div
-      className={gptSearchView ? "bg-black/80 mt-8 p-4 relative" : "px-6 pb-6 "}
+      className={gptSearchView ? " mt-8 p-4 relative" : "px-6 pb-6 "}
       onMouseEnter={() => setArrowVisibility(true)}
       onMouseLeave={() => setArrowVisibility(false)}
     >

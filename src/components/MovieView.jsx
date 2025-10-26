@@ -6,10 +6,10 @@ const MovieView = () => {
   let { movieId } = useParams();
   console.log(movieId);
   return (
-    <div>
-      <Header />
-    </div>
+    <div className="bg-[#18181b] w-screen h-screen  ">{/* <Header /> */}</div>
   );
 };
 
 export default MovieView;
+
+// https://www.perplexity.ai/search/i-want-movie-detail-page-simil-DvoKN27uQgCnXNgrBMyh_g

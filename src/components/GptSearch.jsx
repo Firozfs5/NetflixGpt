@@ -4,7 +4,6 @@ const GptSearch = () => {
   return (
     <div className="fixed h-full w-full bg-[#18181b] overflow-y-scroll">
       <GptSearchBar />
-
       <GptMovieSuggestion />
     </div>
   );

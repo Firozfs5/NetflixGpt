@@ -1,21 +1,24 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import lang from "../utils/languageConstants";
 import { useRef } from "react";
-import useGptCallMovies from "../hooks/useGptSearchBar";
+import useGptCallMovies from "../hooks/useGptCallMovies";
 import { IoSearch } from "react-icons/io5";
+import { toggleNetflixLoader } from "../utils/gptSlice";
 
 const GptSearchBar = () => {
   let languageChoose = useSelector((store) => store.config.lang);
   let searchText = useRef(null);
+  let dispatch = useDispatch();
 
   let generateSearchResults = useGptCallMovies();
 
   let handleGptSearchClick = function () {
+    dispatch(toggleNetflixLoader(true));
     generateSearchResults(searchText);
   };
 
   return (
-    <div className="w-full pt-20 mt-6  flex justify-center items-center">
+    <div className="w-full pt-20 flex justify-center items-center">
       <form
         className="max-w-[1/2] mx-auto w-[50%]"
         onSubmit={(e) => e.preventDefault()}

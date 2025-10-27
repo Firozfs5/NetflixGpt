@@ -22,3 +22,11 @@ export const SUPPORTED_LANGUAGES = [
   { identifier: "kn", name: "Kannada" },
   { identifier: "hi", name: "Hindi" },
 ];
+
+// menue items
+export const MENU_ITEMS = [
+  { menueName: "Home", path: "/browse" },
+  { menueName: "TV Series", path: "/TV Series" },
+  { menueName: "Movies", path: "/Movies" },
+  { menueName: "My List", path: "/My List" },
+];

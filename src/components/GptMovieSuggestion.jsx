@@ -1,10 +1,12 @@
 import { useSelector } from "react-redux";
 import MovieList from "./MovieList";
-
+import NetflixLoader from "./NetflixLoader";
 const GptMovieSuggestion = () => {
-  let { movieResults, movieNames } = useSelector((store) => store.gpt);
+  let { movieResults, movieNames, netflixLoader } = useSelector(
+    (store) => store.gpt
+  );
   console.log(movieResults, movieNames);
-  // if (!movieNames) return null;
+  if (netflixLoader) return <NetflixLoader />;
   let head = 0;
   return (
     <div className="">

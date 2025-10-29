@@ -13,6 +13,8 @@ https://www.imdb.com/title/tt18392014/?ref_=hm_tenup_i_5
 https://dribbble.com/shots/18407647-Dune-concept-shorts-Promo-Page
 https://cdn.jsdelivr.net/gh/Th3Wall/assets-cdn/Fakeflix/screenshots/Fakeflix_Home.jpg
 
+firoz@gmail.com
+Firoz#5
 src/
 ├── features/
 │ ├── auth/
@@ -99,12 +101,12 @@ return json.results;
 
 let handleGptSearchClick = async (searchText) => {
 //query
-let gptQuery = `        You are a Movie Recommendation AI.
+let gptQuery = `       You are a Movie Recommendation AI.
          Suggest 8 movies related to "${searchText.current.value}".
          Make sure the searched movie (if it's real) is also included.
          Output must be only movie titles, separated by commas — no extra words or numbering.
          Example: Inception, Interstellar, Tenet, The Dark Knight, Memento, Dunkirk, Prestige, Oppenheimer
-       `;
+      `;
 //calling gemini
 const response = await ai.models.generateContent({
 model: "gemini-2.5-flash",

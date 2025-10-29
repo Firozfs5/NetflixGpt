@@ -36,7 +36,7 @@ function useGptCallMovies() {
       // ✅ Simple direct call - proxy handles everything
       const response = await fetch(
         `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${
-          import.meta.env.GEMINI_API_KEY
+          import.meta.env.VITE_GEMINI_API_KEY
         }`,
         {
           method: "POST",

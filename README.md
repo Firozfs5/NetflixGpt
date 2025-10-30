@@ -101,12 +101,12 @@ return json.results;
 
 let handleGptSearchClick = async (searchText) => {
 //query
-let gptQuery = `       You are a Movie Recommendation AI.
+let gptQuery = `      You are a Movie Recommendation AI.
          Suggest 8 movies related to "${searchText.current.value}".
          Make sure the searched movie (if it's real) is also included.
          Output must be only movie titles, separated by commas — no extra words or numbering.
          Example: Inception, Interstellar, Tenet, The Dark Knight, Memento, Dunkirk, Prestige, Oppenheimer
-      `;
+     `;
 //calling gemini
 const response = await ai.models.generateContent({
 model: "gemini-2.5-flash",
@@ -140,3 +140,14 @@ apiKey: import.meta.env.VITE_GEMINI_API_KEY,
 });
 
 export default ai;
+
+import { RouterProvider } from "react-router-dom";
+import appRouter from "../utils/appRouter";
+const Body = () => {
+return (
+<!-- <div> -->
+<!-- <RouterProvider router={appRouter} /> -->
+<!-- </div> -->
+);
+};
+export default Body;

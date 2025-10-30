@@ -1,13 +1,13 @@
 import { Provider } from "react-redux";
-import Body from "./components/Body";
 import "./index.css";
-import appStore from "./utils/appStore";
-
+import appStore from "./store/appStore";
+import { RouterProvider } from "react-router-dom";
+import appRouter from "./routes/appRouter";
 function App() {
   return (
-    <div className="text-xl text-amber-300">
+    <div className="text-xl">
       <Provider store={appStore}>
-        <Body />
+        <RouterProvider router={appRouter} />
       </Provider>
     </div>
   );

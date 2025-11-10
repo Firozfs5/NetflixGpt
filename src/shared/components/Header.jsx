@@ -6,8 +6,6 @@ import { changeLanguage } from "../../store/configSlice";
 import UserProfile from "../../features/auth/components/UserProfile";
 import { NavLink, useLocation } from "react-router-dom";
 import { IoSearch } from "react-icons/io5";
-import TudumIntro from "./TudumIntro";
-
 const Header = () => {
   let dispatch = useDispatch();
   let [scroll, setScroll] = useState(false);
@@ -23,17 +21,12 @@ const Header = () => {
   }, []);
 
   let user = useSelector((store) => store?.user);
-
   function handleLanguageChange(e) {
     console.log(e.target.value);
     dispatch(changeLanguage(e.target.value));
   }
 
-  let [showTudum, setShowTudum] = useState(true);
-
-  return showTudum ? (
-    <TudumIntro onFinish={() => setShowTudum(false)} />
-  ) : (
+  return (
     <div
       className={` fixed flex  ${
         scroll ? "bg-[#18181b] backdrop-blur-md  " : "bg-transparent"

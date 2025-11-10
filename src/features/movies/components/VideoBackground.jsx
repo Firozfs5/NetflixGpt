@@ -1,4 +1,4 @@
-import useMovieTrailer from "../hooks/useTrailerVideo";
+import useMovieTrailer from "../hooks/useMovieTrailer";
 
 const VideoBackground = ({ movieId, trailerAudio }) => {
   let trailerId = useMovieTrailer(movieId);

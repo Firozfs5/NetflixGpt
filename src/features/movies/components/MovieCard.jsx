@@ -39,6 +39,7 @@ const MovieCard = ({ movie }) => {
         className="scale-92 hover:scale-99 transition-transform duration-200 rounded-lg"
         alt="Movie poster"
         draggable="false"
+        loading="lazy"
       />
     </div>
   );

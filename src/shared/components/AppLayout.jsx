@@ -1,24 +1,28 @@
 import React, { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import Header from "./Header";
-
+import TudumIntro from "./TudumIntro";
 import { addUser, removeUser } from "../../features/auth/store/usersSlice";
 import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../config/firebase";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
-import usePopularMovies from "../../features/movies/hooks/usePopularMovies";
-import useTopRatedMovies from "../../features/movies/hooks/useTopRatedMovies";
-import useNowPlayingMovies from "../../features/movies/hooks/useNowPlayingMovies";
-import useUpcomingMovies from "../../features/movies/hooks/useUpcomingMovies";
 import NetflixLoader from "./NetflixLoader";
-// import { useState } from "react";
+import {
+  // fetchAllMovies,
+  fetchNowPlayingMovies,
+  fetchPopularMovies,
+  fetchTopRatedMovies,
+  fetchUpcomingMovies,
+} from "../../features/movies/store/movieThunx";
+
 const AppLayout = () => {
   let dispatch = useDispatch();
   let navigate = useNavigate();
   let location = useLocation();
   let [isLoading, setIsloading] = useState(true);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -31,6 +35,12 @@ const AppLayout = () => {
             photoURL: photoURL,
           })
         );
+        // dispatch(fetchAllMovies());
+        dispatch(fetchPopularMovies());
+        dispatch(fetchNowPlayingMovies());
+        dispatch(fetchTopRatedMovies());
+        dispatch(fetchUpcomingMovies());
+
         if (location.pathname === "/") {
           navigate("/browse");
         }
@@ -46,17 +56,17 @@ const AppLayout = () => {
 
     return () => unsubscribe();
   }, [dispatch, navigate, location]);
-  useNowPlayingMovies();
-  usePopularMovies();
-  useTopRatedMovies();
-  useUpcomingMovies();
+
+  let [showTudum, setShowTudum] = useState(true);
 
   if (isLoading) {
     return <NetflixLoader />;
   }
 
-  return (
-    <div>
+  return showTudum ? (
+    <TudumIntro onFinish={() => setShowTudum(false)} />
+  ) : (
+    <div className="bg-black">
       <Header />
       <Outlet />
     </div>

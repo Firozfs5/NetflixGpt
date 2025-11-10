@@ -17,6 +17,7 @@ const MainContainer = () => {
         overview={overview}
         trailerAudio={trailerAudio}
         setTrailerAudio={setTrailerAudio}
+        movieId={id}
       />
       <VideoBackground movieId={id} trailerAudio={trailerAudio} />
     </div>

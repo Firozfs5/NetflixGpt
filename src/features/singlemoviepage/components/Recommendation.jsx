@@ -5,9 +5,13 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import React from "react";
 import CastCard from "./CastCard";
-const CastCollection = () => {
+import RecommendationCard from "./RecommendationCard";
+const Recommendation = () => {
   const [arrowVisibility, setArrowVisibility] = useState(false);
-  const castData = useSelector((store) => store.movie.movieData.movieCast);
+  const recommendationData = useSelector(
+    (store) => store.movie.movieData.recommendation
+  );
+  // console.log(castData);
   // ✅ Corrected Left Arrow
   function PrevArrow(props) {
     const { onClick } = props;
@@ -42,7 +46,7 @@ const CastCollection = () => {
     dots: false,
     infinite: false,
     speed: 600,
-    slidesToShow: 6,
+    slidesToShow: 5,
     slidesToScroll: 4,
     arrows: true,
     autoplay: false,
@@ -67,14 +71,14 @@ const CastCollection = () => {
       onMouseLeave={() => setArrowVisibility(false)}
     >
       <h1 className={"text-[29px] font-bold text-white mb-1 ml-4"}>
-        Movie Cast
+        Recommendation
       </h1>
 
       <Slider {...settings}>
-        {castData?.map((card) =>
-          !card.profile_path ? null : (
-            <div key={card?.id} className="px-2">
-              <CastCard card={card} />
+        {recommendationData?.map((card) =>
+          !card.backdrop_path ? null : (
+            <div key={card?.id} className="px-2 mt-2">
+              <RecommendationCard card={card} />
             </div>
           )
         )}
@@ -83,4 +87,4 @@ const CastCollection = () => {
   );
 };
 
-export default React.memo(CastCollection);
+export default React.memo(Recommendation);

@@ -14,12 +14,10 @@ const MovieView = () => {
   let trailerId = useMovieTrailer(movieId);
   useEffect(() => {
     movieDataFetcher(movieId);
-  }, [movieId]);
+  }, [movieId, movieDataFetcher]);
 
-  let movieData = useSelector((store) => store.movies.movieData);
-  // console.log(movieData);
+  let movieData = useSelector((store) => store.movie.movieData);
   if (!movieData) return <NetflixLoader />;
-  // console.log(movieData.movieInfo);
 
   return (
     <div className="bg-[#18181b] w-screen h-min-screen flex flex-col items-center gap-4 ">

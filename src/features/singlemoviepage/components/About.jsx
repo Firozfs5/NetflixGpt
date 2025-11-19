@@ -37,7 +37,7 @@ const buildImage = (path) => {
 };
 
 function About() {
-  const movieData = useSelector((store) => store.movies.movieData) || {};
+  const movieData = useSelector((store) => store.movie.movieData) || {};
   const { movieCrew = [], movieInfo = {} } = movieData;
 
   const director = useMemo(

@@ -1,14 +1,31 @@
+import { useState } from "react";
 import { RxSpeakerModerate, RxSpeakerOff } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
+import Modal from "../../../shared/components/Modal";
+import ModalBody from "../../../shared/components/ModalBody";
 
 const VideoTitle = ({
   overview,
   title,
   trailerAudio,
   setTrailerAudio,
+  trailerId,
   movieId,
 }) => {
   let navigate = useNavigate();
+  let [openModal, setOpenModal] = useState(false);
+
+  const closeModal = (e) => {
+    e.stopPropagation();
+    setOpenModal(false);
+    document.body.style.overflow = "";
+  };
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+    document.body.style.overflow = "hidden";
+  };
+
   return (
     <div className="w-screen h-[94vh] flex flex-col pt-[15%]  z-10 px-24 absolute text-white inset-0 bg-linear-to-b from-[#18181b]/70 via-[#18181b]/50 to-[#18181b]/90">
       <h1 className="text-5xl font-bold">{title}</h1>
@@ -16,7 +33,10 @@ const VideoTitle = ({
         {overview.slice(0, 200) + "..."}
       </p>
       <div>
-        <button className="bg-white text-black font-bold px-10 py-3 rounded-lg mr-4 hover:bg-white/80 transition-colors duration-200">
+        <button
+          onClick={handleOpenModal}
+          className="bg-white text-black font-bold px-10 py-3 rounded-lg mr-4 hover:bg-white/80 transition-colors duration-200"
+        >
           Play
         </button>
         <button
@@ -32,6 +52,13 @@ const VideoTitle = ({
       >
         {!trailerAudio ? <RxSpeakerOff /> : <RxSpeakerModerate />}
       </button>
+
+      {/* modal */}
+      {openModal && (
+        <Modal closeModal={closeModal}>
+          <ModalBody videokey={trailerId} />
+        </Modal>
+      )}
     </div>
   );
 };

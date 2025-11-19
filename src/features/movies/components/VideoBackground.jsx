@@ -1,11 +1,8 @@
-import useMovieTrailer from "../hooks/useMovieTrailer";
-
-const VideoBackground = ({ movieId, trailerAudio }) => {
-  let trailerId = useMovieTrailer(movieId);
+const VideoBackground = ({ trailerAudio, trailerId }) => {
   return (
-    <div className="relative w-screen h-[94vh]  overflow-hidden ">
+    <div className="relative  lg:w-full lg:h-[94vh]  overflow-hidden ">
       <iframe
-        className="absolute w-screen  -mt-8 top-1/2 left-1/2 h-[129vh] -translate-x-1/2 -translate-y-1/2"
+        className="absolute w-screen  -mt-8 top-1/2 left-1/2 lg:h-[129vh] -translate-x-1/2 -translate-y-1/2"
         src={`https://www.youtube.com/embed/${trailerId}?autoplay=1&mute=${
           trailerAudio ? "5" : "1"
         }&controls=0&loop=1&playlist=${trailerId}`}

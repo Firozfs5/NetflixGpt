@@ -4,11 +4,12 @@ import { useDispatch } from "react-redux";
 import { LOGO, MENU_ITEMS, SUPPORTED_LANGUAGES } from "../../config/constants";
 import { changeLanguage } from "../../store/configSlice";
 import UserProfile from "../../features/auth/components/UserProfile";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { IoSearch } from "react-icons/io5";
 const Header = () => {
   let dispatch = useDispatch();
   let [scroll, setScroll] = useState(false);
+  let navigate = useNavigate();
   let location = useLocation();
   useEffect(() => {
     const handleScroll = () => {
@@ -29,10 +30,15 @@ const Header = () => {
   return (
     <div
       className={` fixed flex  ${
-        scroll ? "bg-[#18181b] backdrop-blur-md  " : "bg-transparent"
+        scroll ? "bg-[#18181b]/70 backdrop-blur-md  " : "bg-transparent"
       } w-screen px-8 transition-colors duration-300  ease-in-out bg-linear-to-b from-[bg-[#18181b]] z-30 `}
     >
-      <img className="w-44" src={LOGO} alt="Netflix_Logo" />
+      <img
+        className="w-44"
+        src={LOGO}
+        alt="Netflix_Logo"
+        onClick={() => navigate("/browse")}
+      />
 
       {user && (
         <div className="flex items-center justify-between w-full">

@@ -55,7 +55,7 @@ const AppLayout = () => {
     });
 
     return () => unsubscribe();
-  }, [dispatch, navigate, location]);
+  }, []);
 
   let [showTudum, setShowTudum] = useState(true);
 

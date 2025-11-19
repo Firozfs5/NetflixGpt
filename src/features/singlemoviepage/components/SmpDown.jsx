@@ -1,5 +1,7 @@
 import About from "./About";
 import CastCollection from "./CastCollection";
+import MovieVideos from "./MovieVideos";
+import Recommendation from "./Recommendation";
 import Reviews from "./Reviews";
 const SmpDown = ({ movieData }) => {
   function cleanDomain(link) {
@@ -85,6 +87,10 @@ const SmpDown = ({ movieData }) => {
       <About />
 
       <CastCollection />
+
+      <MovieVideos />
+
+      <Recommendation />
 
       <Reviews />
     </div>

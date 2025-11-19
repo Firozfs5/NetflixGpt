@@ -4,10 +4,14 @@ import "slick-carousel/slick/slick-theme.css";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import React from "react";
-import CastCard from "./CastCard";
-const CastCollection = () => {
+import MovieVideosCard from "./MovieVideosCard";
+
+const MovieVideos = () => {
   const [arrowVisibility, setArrowVisibility] = useState(false);
-  const castData = useSelector((store) => store.movie.movieData.movieCast);
+  const movieVideos = useSelector((store) => store.movie.movieData.video);
+  const filteredMovieVideos = movieVideos.filter(
+    (movie) => movie.site == "YouTube"
+  );
   // ✅ Corrected Left Arrow
   function PrevArrow(props) {
     const { onClick } = props;
@@ -42,7 +46,7 @@ const CastCollection = () => {
     dots: false,
     infinite: false,
     speed: 600,
-    slidesToShow: 6,
+    slidesToShow: 5,
     slidesToScroll: 4,
     arrows: true,
     autoplay: false,
@@ -66,21 +70,17 @@ const CastCollection = () => {
       onMouseEnter={() => setArrowVisibility(true)}
       onMouseLeave={() => setArrowVisibility(false)}
     >
-      <h1 className={"text-[29px] font-bold text-white mb-1 ml-4"}>
-        Movie Cast
-      </h1>
+      <h1 className={"text-[29px] font-bold text-white mb-1 ml-4"}>Videos</h1>
 
       <Slider {...settings}>
-        {castData?.map((card) =>
-          !card.profile_path ? null : (
-            <div key={card?.id} className="px-2">
-              <CastCard card={card} />
-            </div>
-          )
-        )}
+        {filteredMovieVideos?.map((card) => (
+          <div key={card?.id} className="px-2">
+            <MovieVideosCard card={card} />
+          </div>
+        ))}
       </Slider>
     </div>
   );
 };
 
-export default React.memo(CastCollection);
+export default React.memo(MovieVideos);

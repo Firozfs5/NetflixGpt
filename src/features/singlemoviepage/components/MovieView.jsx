@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import NetflixLoader from "../../../shared/components/NetflixLoader";
 import { useEffect } from "react";
 import useMovieTrailer from "../../movies/hooks/useMovieTrailer";
-
+import NetflixFooter from "../../../shared/components/NetflixFooter";
 import SmpUp from "./SmpUp";
 import SmpDown from "./SmpDown";
 
@@ -24,6 +24,7 @@ const MovieView = () => {
       {/* header */}
       <SmpUp movieData={movieData} trailerId={trailerId} />
       <SmpDown movieData={movieData} trailerId={trailerId} />
+      {/* <NetflixFooter /> */}
     </div>
   );
 };

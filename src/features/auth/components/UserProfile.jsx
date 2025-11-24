@@ -158,21 +158,6 @@ function UserProfile() {
               Settings
             </NavLink>
           </li>
-          <li role="none">
-            <NavLink
-              to="/profile"
-              role="menuitem"
-              tabIndex={open ? 0 : -1}
-              className={({ isActive }) =>
-                `block px-4 py-2 text-sm outline-none ${
-                  isActive ? "bg-gray-700 text-white" : "text-gray-200"
-                } hover:bg-gray-700 hover:text-white focus-visible:ring-2 focus-visible:ring-indigo-500`
-              }
-              onClick={close}
-            >
-              Profile
-            </NavLink>
-          </li>
         </ul>
 
         {/* Sign Out */}

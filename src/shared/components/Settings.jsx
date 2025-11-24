@@ -33,7 +33,7 @@ const Settings = () => {
 
   return (
     <div className="min-h-screen bg-[#18181b] text-white pt-20 px-4 md:px-8">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto ">
         {/* Back Button */}
         <button
           onClick={() => navigate(-1)}
@@ -94,7 +94,7 @@ const Settings = () => {
           </div>
 
           {/* Main Content */}
-          <div className="md:w-3/4">
+          <div className="md:w-3/4 mb-8">
             <div className="bg-[#212529] rounded-lg p-6">
               {/* Account Tab */}
               {activeTab === "account" && (

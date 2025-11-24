@@ -1,3 +1,5 @@
+// import { IMG_CDN } from "../../../config/constants";
+// backdrop_path
 const VideoBackground = ({ trailerAudio, trailerId }) => {
   return (
     <div className="relative  lg:w-full lg:h-[94vh]  overflow-hidden ">
@@ -10,6 +12,12 @@ const VideoBackground = ({ trailerAudio, trailerId }) => {
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; "
         referrerPolicy="strict-origin-when-cross-origin"
       />
+      {/* {console.log(IMG_CDN + backdrop_path)}
+      <img
+        src={IMG_CDN + backdrop_path}
+        alt=""
+        className="absolute w-screen  -mt-8 top-1/2 left-1/2 lg:h-[129vh] -translate-x-1/2 -translate-y-1/2"
+      /> */}
     </div>
   );
 };

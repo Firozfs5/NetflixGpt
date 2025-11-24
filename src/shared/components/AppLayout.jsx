@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import TudumIntro from "./TudumIntro";
@@ -10,7 +10,6 @@ import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import NetflixLoader from "./NetflixLoader";
 import {
-  // fetchAllMovies,
   fetchNowPlayingMovies,
   fetchPopularMovies,
   fetchTopRatedMovies,
@@ -35,7 +34,6 @@ const AppLayout = () => {
             photoURL: photoURL,
           })
         );
-        // dispatch(fetchAllMovies());
         dispatch(fetchPopularMovies());
         dispatch(fetchNowPlayingMovies());
         dispatch(fetchTopRatedMovies());

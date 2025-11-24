@@ -11,7 +11,7 @@ const MainContainer = () => {
   // if (!movies || movies.length === 0) return null;
 
   const mainMovie = movies[0];
-  let { title, overview, id } = mainMovie;
+  let { title, overview, id, backdrop_path } = mainMovie;
   let trailerId = useMovieTrailer(id);
   return (
     <div className="w-full flex justify-center items-center">
@@ -27,6 +27,7 @@ const MainContainer = () => {
         movieId={id}
         trailerAudio={trailerAudio}
         trailerId={trailerId}
+        backdrop_path={backdrop_path}
       />
     </div>
   );

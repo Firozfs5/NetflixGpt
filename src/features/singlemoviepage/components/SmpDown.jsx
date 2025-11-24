@@ -1,3 +1,4 @@
+import NetflixFooter from "../../../shared/components/NetflixFooter";
 import About from "./About";
 import CastCollection from "./CastCollection";
 import MovieVideos from "./MovieVideos";
@@ -93,6 +94,8 @@ const SmpDown = ({ movieData }) => {
       <Recommendation />
 
       <Reviews />
+
+      <NetflixFooter />
     </div>
   );
 };

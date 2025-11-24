@@ -13,7 +13,7 @@ const Header = () => {
   let location = useLocation();
   useEffect(() => {
     const handleScroll = () => {
-      setScroll(window.scrollY > 100 ? true : false);
+      setScroll(window.scrollY > 45 ? true : false);
     };
 
     window.addEventListener("scroll", handleScroll);

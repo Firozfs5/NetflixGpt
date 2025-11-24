@@ -35,12 +35,16 @@ const ReviewCard = ({ review }) => {
 
       <div className="p-3">
         <p className="text-lg font-normal text-gray-200 leading-relaxed">
-          {readMore ? review.content : review.content.slice(0, 490) + "..."}{" "}
+          {readMore ? review.content : review.content.slice(0, 490) + " . . ."}
           <span
             className=" border-0 hover:border-b-2"
             onClick={() => setReadMore(!readMore)}
           >
-            {readMore ? "Read Less" : "Read More"}
+            {review.content.length > 340
+              ? readMore
+                ? " Read Less"
+                : " Read More"
+              : ""}
           </span>
         </p>
       </div>

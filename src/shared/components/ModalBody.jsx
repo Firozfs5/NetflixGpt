@@ -22,28 +22,3 @@ const ModalBody = ({ videokey, closeModal }) => {
 };
 
 export default ModalBody;
-
-// const ModalBody = ({ videokey, closeModal }) => {
-//   return (
-//     <div className="relative w-full h-full">
-//       <button
-//         className="absolute top-4 right-4 text-white"
-//         onClick={(e) => {
-//           e.stopPropagation();
-//           closeModal();
-//         }}
-//       >
-//         <RxCross2 className="text-4xl font-bold hover:scale-110 transition duration-200" />
-//       </button>
-
-//       <iframe
-//         className="w-full h-[600px] rounded-2xl"
-//         src={`https://www.youtube.com/embed/${videokey}?autoplay=1&mute=1&rel=0&controls=1&modestbranding=1`}
-//         frameBorder="0"
-//         allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-//       ></iframe>
-//     </div>
-//   );
-// };
-
-// export default ModalBody;

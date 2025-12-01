@@ -1,7 +1,6 @@
 import { RxCross2 } from "react-icons/rx";
 
 const ModalBody = ({ videokey, closeModal }) => {
-  //   console.log(key);
   return (
     <div className="w-4/5 h-4/5">
       <div className="absolute top-6 left-[93%] text-white">

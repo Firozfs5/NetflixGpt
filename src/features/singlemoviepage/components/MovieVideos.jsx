@@ -6,7 +6,7 @@ import React from "react";
 import MovieVideosCard from "./MovieVideosCard";
 import useCollectionEvent from "../../../shared/hooks/useCollectionEvent";
 
-const MovieVideos = () => {
+const MovieVideos = ({ scrollSection }) => {
   const movieVideos = useSelector((store) => store.movie.movieData.video);
   const filteredMovieVideos = movieVideos.filter(
     (movie) => movie.site == "YouTube"
@@ -15,7 +15,10 @@ const MovieVideos = () => {
 
   return (
     <div
-      className={" mt-6 p-4 py-3  rounded-lg relative bg-[#313647]/30"}
+      ref={scrollSection}
+      className={
+        " mt-6 p-4 py-3  rounded-lg relative bg-[#313647]/30 scroll-mt-24"
+      }
       onMouseEnter={() => setArrowVisibility(true)}
       onMouseLeave={() => setArrowVisibility(false)}
     >

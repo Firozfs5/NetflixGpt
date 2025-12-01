@@ -44,9 +44,7 @@ const AppLayout = () => {
         }
       } else {
         dispatch(removeUser());
-        if (location.pathname !== "/") {
-          navigate("/");
-        }
+        navigate("/");
         dispatch({ type: "RESET_STORE" });
       }
       setIsloading(false);

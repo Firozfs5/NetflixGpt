@@ -4,7 +4,7 @@ import CastCollection from "./CastCollection";
 import MovieVideos from "./MovieVideos";
 import Recommendation from "./Recommendation";
 import Reviews from "./Reviews";
-const SmpDown = ({ movieData }) => {
+const SmpDown = ({ movieData, scrollSection }) => {
   function cleanDomain(link) {
     try {
       const url = new URL(link.replace(/^(https?:\/\/)+/i, "https://"));
@@ -89,7 +89,7 @@ const SmpDown = ({ movieData }) => {
 
       <CastCollection />
 
-      <MovieVideos />
+      <MovieVideos scrollSection={scrollSection} />
 
       <Recommendation />
 

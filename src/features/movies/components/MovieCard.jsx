@@ -10,14 +10,14 @@ const MovieCard = ({ movie }) => {
   );
   return (
     <div
-      className="w-52 select-none"
+      className="w-56 select-none "
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onClick={handleClick}
     >
       <img
         src={IMG_CDN + movie.poster_path}
-        className="scale-92 hover:scale-99 transition-transform duration-200 rounded-lg"
+        className="scale-92 hover:scale-99 transition-transform duration-240 rounded-lg z-0"
         alt="Movie poster"
         draggable="false"
         loading="lazy"

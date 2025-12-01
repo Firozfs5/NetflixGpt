@@ -5,7 +5,7 @@ const GptMovieSuggestion = () => {
   let { movieResults, movieNames, netflixLoader } = useSelector(
     (store) => store.gpt
   );
-  console.log(movieResults, movieNames);
+
   if (netflixLoader) return <NetflixLoader />;
 
   return (

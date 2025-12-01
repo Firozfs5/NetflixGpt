@@ -23,36 +23,3 @@ netflix smp
 https://dribbble.com/shots/19996253-Netflix-Gamified-Dashboard
 (https://dribbble.com/shots/20876935-Netflix-Website-Concept-Redesign)
 https://www.perplexity.ai/search/i-want-movie-detail-page-simil-DvoKN27uQgCnXNgrBMyh_g
-
-next push
-1.adding photos(modal) and video(modal)
-2.recommended movies
-3.error while going back
-
-<!-- under check -->
-
-// const navigate = useNavigate();
-// const isDragging = useRef(false);
-// const startX = useRef(0);
-
-// const handleMouseDown = (e) => {
-// isDragging.current = false;
-// startX.current = e.clientX;
-// };
-
-// const handleMouseMove = (e) => {
-// if (Math.abs(e.clientX - startX.current) > 6) {
-// isDragging.current = true; // mark as drag
-// }
-// };
-
-// const handleClick = (e) => {
-// if (isDragging.current) {
-// e.preventDefault(); // 🚫 cancel navigation if drag happened
-// return;
-// }
-// // ✅ Real click — navigate manually
-// navigate(`/movie/${card.id}`);
-// };
-
-<!-- under check -->

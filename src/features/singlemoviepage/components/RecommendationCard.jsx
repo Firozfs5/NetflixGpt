@@ -1,31 +1,12 @@
-import { useNavigate } from "react-router-dom";
 import { IMG_CDN } from "../../../config/constants";
-import React, { useRef } from "react";
+import React from "react";
+import useCardEvent from "../../../shared/hooks/useCardEvent";
 
 const RecommendationCard = ({ card }) => {
-  const navigate = useNavigate();
-  const isDragging = useRef(false);
-  const startX = useRef(0);
-
-  const handleMouseDown = (e) => {
-    isDragging.current = false;
-    startX.current = e.clientX;
-  };
-
-  const handleMouseMove = (e) => {
-    if (Math.abs(e.clientX - startX.current) > 6) {
-      isDragging.current = true; // mark as drag
-    }
-  };
-
-  const handleClick = (e) => {
-    if (isDragging.current) {
-      e.preventDefault(); // 🚫 cancel navigation if drag happened
-      return;
-    }
-    // ✅ Real click — navigate manually
-    navigate(`/movie/${card.id}`);
-  };
+  let [handleMouseDown, handleMouseMove, handleClick] = useCardEvent(
+    card,
+    "movie"
+  );
 
   return (
     <div
@@ -47,3 +28,4 @@ const RecommendationCard = ({ card }) => {
 };
 
 export default React.memo(RecommendationCard);
+//56

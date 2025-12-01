@@ -5,8 +5,10 @@ import useCardEvent from "../../../shared/hooks/useCardEvent";
 const CastCard = ({ card }) => {
   let [handleMouseDown, handleMouseMove, handleClick] = useCardEvent(
     card,
-    "person"
+    "person",
+    true
   );
+
   return (
     <div
       className="w-52 select-none flex flex-col"

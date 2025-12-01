@@ -2,9 +2,8 @@ import { useParams } from "react-router-dom";
 import useFetchMovieData from "../hooks/useFetchMovieData";
 import { useSelector } from "react-redux";
 import NetflixLoader from "../../../shared/components/NetflixLoader";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import useMovieTrailer from "../../movies/hooks/useMovieTrailer";
-import NetflixFooter from "../../../shared/components/NetflixFooter";
 import SmpUp from "./SmpUp";
 import SmpDown from "./SmpDown";
 
@@ -15,15 +14,33 @@ const MovieView = () => {
   useEffect(() => {
     movieDataFetcher(movieId);
   }, [movieId, movieDataFetcher]);
-
   let movieData = useSelector((store) => store.movie.movieData);
+
+  //ref to make to go to a specific part
+  let scrollSection = useRef(null);
+
+  let scrollSectionFunc = () => {
+    if (scrollSection?.current) {
+      scrollSection.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   if (!movieData) return <NetflixLoader />;
 
   return (
     <div className="bg-[#18181b] w-screen h-min-screen flex flex-col items-center gap-4 ">
       {/* header */}
-      <SmpUp movieData={movieData} trailerId={trailerId} />
-      <SmpDown movieData={movieData} trailerId={trailerId} />
+      <SmpUp
+        movieData={movieData}
+        trailerId={trailerId}
+        scrollSectionFunc={scrollSectionFunc}
+      />
+
+      <SmpDown
+        movieData={movieData}
+        trailerId={trailerId}
+        scrollSection={scrollSection}
+      />
       {/* <NetflixFooter /> */}
     </div>
   );

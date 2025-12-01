@@ -10,7 +10,6 @@ const Recommendation = () => {
   const recommendationData = useSelector(
     (store) => store.movie.movieData.recommendation
   );
-  console.log(recommendationData);
   const { setArrowVisibility, settings } = useCollectionEvent(5, false);
 
   return (

@@ -1,8 +1,8 @@
-import { useState } from "react";
 import { RxSpeakerModerate, RxSpeakerOff } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
 import Modal from "../../../shared/components/Modal";
-import ModalBody from "../../../shared/components/ModalBody";
+import VideoModalBody from "../../../shared/components/VideoModalBody";
+import useModal from "../../../shared/hooks/useModal";
 
 const VideoTitle = ({
   overview,
@@ -13,18 +13,8 @@ const VideoTitle = ({
   movieId,
 }) => {
   let navigate = useNavigate();
-  let [openModal, setOpenModal] = useState(false);
 
-  const closeModal = (e) => {
-    e.stopPropagation();
-    setOpenModal(false);
-    document.body.style.overflow = "";
-  };
-
-  const handleOpenModal = () => {
-    setOpenModal(true);
-    document.body.style.overflow = "hidden";
-  };
+  let { openModal, closeModal, handleOpenModal } = useModal();
 
   return (
     <div className="w-screen h-[94vh] flex flex-col pt-[15%]  z-10 px-24 absolute text-white inset-0 bg-linear-to-b from-[#18181b]/70 via-[#18181b]/50 to-[#18181b]/90">
@@ -56,7 +46,7 @@ const VideoTitle = ({
       {/* modal */}
       {openModal && (
         <Modal closeModal={closeModal}>
-          <ModalBody videokey={trailerId} />
+          <VideoModalBody videokey={trailerId} />
         </Modal>
       )}
     </div>
@@ -64,3 +54,4 @@ const VideoTitle = ({
 };
 
 export default VideoTitle;
+//70

@@ -23,7 +23,6 @@ const Header = () => {
 
   let user = useSelector((store) => store?.user);
   function handleLanguageChange(e) {
-    console.log(e.target.value);
     dispatch(changeLanguage(e.target.value));
   }
 

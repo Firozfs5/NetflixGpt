@@ -1,8 +1,9 @@
 import { IMG_CDN } from "../../../config/constants";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { useSelector } from "react-redux";
 import Modal from "../../../shared/components/Modal";
-import ModalBody from "../../../shared/components/ModalBody";
+import VideoModalBody from "../../../shared/components/VideoModalBody";
+import useModal from "../../../shared/hooks/useModal";
 
 const MovieVideosCard = ({ card }) => {
   const isDragging = useRef(false);
@@ -10,8 +11,6 @@ const MovieVideosCard = ({ card }) => {
   const backdrop_path = useSelector(
     (store) => store.movie.movieData.movieInfo.backdrop_path
   );
-
-  const [openModal, setOpenModal] = useState(false);
 
   const handleMouseDown = (e) => {
     isDragging.current = false;
@@ -29,18 +28,11 @@ const MovieVideosCard = ({ card }) => {
       e.preventDefault(); // 🚫 cancel navigation if drag happened
       return;
     }
-    // ✅ Real click — navigate manually
-    setOpenModal(true);
-    document.body.style.overflow = "hidden";
+    handleOpenModal();
   };
 
-  const closeModal = (e) => {
-    e.stopPropagation();
-    console.log("hi");
-    setOpenModal(false);
-    document.body.style.overflow = "";
-  };
-  console.log(card.key);
+  let { openModal, closeModal, handleOpenModal } = useModal();
+
   return (
     <div
       className="w-68 select-none flex flex-col "
@@ -59,7 +51,7 @@ const MovieVideosCard = ({ card }) => {
 
       {openModal && (
         <Modal closeModal={closeModal}>
-          <ModalBody videokey={card.key} />
+          <VideoModalBody videokey={card.key} />
         </Modal>
       )}
     </div>
@@ -67,3 +59,4 @@ const MovieVideosCard = ({ card }) => {
 };
 
 export default React.memo(MovieVideosCard);
+// max-76

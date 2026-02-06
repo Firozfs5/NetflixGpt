@@ -4,7 +4,7 @@ import Browse from "../features/movies/components/Browse";
 import MovieView from "../features/singlemoviepage/components/MovieView";
 import AppLayout from "../../src/shared/components/AppLayout";
 import GptSearch from "../features/search/components/GptSearch";
-import Settings from "../shared/components/Settings";
+import Settings from "../features/websetting/components/Settings";
 
 const appRouter = createBrowserRouter([
   {

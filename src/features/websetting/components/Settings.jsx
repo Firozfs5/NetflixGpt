@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
-import { auth } from "../../config/firebase";
-import { changeLanguage } from "../../store/configSlice";
-import { SUPPORTED_LANGUAGES } from "../../config/constants";
+import { auth } from "../../../config/firebase";
+import { changeLanguage } from "../../../store/configSlice";
+import { SUPPORTED_LANGUAGES } from "../../../config/constants";
 import { IoChevronBack } from "react-icons/io5";
 
 const Settings = () => {
